@@ -1,0 +1,11 @@
+# Đường dẫn tuyệt đối đến thư mục gốc chứa dataset YOLO
+path: d:/football/football_yolo  
+
+# Đường dẫn tương đối đến thư mục chứa ảnh train và val (so với 'path')
+train: images/train  
+val: images/val    
+
+# Tên các lớp (class)
+names:
+  0: ball
+  1: player
