@@ -9,3 +9,5 @@ val: images/val
 names:
   0: ball
   1: player
+  2: team_jersey_color
+  3: jersey_number
