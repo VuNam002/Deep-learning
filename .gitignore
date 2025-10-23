@@ -17,7 +17,7 @@ data/
 football_yolo/
 test.jpg
 *.jpg
-*.png
+# *.png
 *.avi
 
 # IDE / Editor
