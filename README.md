@@ -111,7 +111,7 @@ Dự án này sử dụng mô hình YOLO (You Only Look Once) để phát hiện
 Đây là video demo kết quả dự đoán của mô hình trên một video bóng đá.
 
 <video controls>
-  <source src="video/YOLOv8%20Prediction%202025-10-23%2022-22-58.mp4" type="video/mp4">
+  <source src="video/YOLOv8 Prediction 2025-10-23 22-22-58.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
