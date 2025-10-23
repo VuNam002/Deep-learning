@@ -24,33 +24,40 @@ Dự án này sử dụng mô hình YOLO (You Only Look Once) để phát hiện
 ```
 .
 ├── .gitignore
-├── analyze_data.py             # Script để phân tích dữ liệu (tần suất, tương quan)
+├── analyze_data.py             # Script để phân tích dữ liệu
 ├── create_yolo_format_dataset.py # Script để tạo bộ dữ liệu theo định dạng YOLO
 ├── datavisualvision.py         # Script để trực quan hóa dữ liệu
-├── football.yaml               # File cấu hình cho dataset YOLO (đường dẫn, tên lớp)
+├── football.yaml               # File cấu hình cho dataset YOLO
 ├── predict_video.py            # Script để chạy dự đoán trên video
 ├── README.md                   # File tài liệu này
-├── split_dataset.py            # Script để chia bộ dữ liệu thành tập train/val/test
 ├── requirements.txt            # Danh sách thư viện cần thiết
-├── analysis_results/           # Thư mục chứa kết quả phân tích dữ liệu
+├── split_dataset.py            # Script để chia bộ dữ liệu
+├── analysis_results/           # Thư mục chứa kết quả phân tích
+│   ├── bbox_size_distribution.png
+│   ├── category_distribution.png
+│   ├── class_correlation_heatmap.png
 │   ├── class_correlation.csv
-│   └── object_frequency.csv
-├── data/                       # Thư mục chứa dữ liệu gốc (hình ảnh, video, annotations)
-├── football_yolo/              # Thư mục chứa bộ dữ liệu đã được xử lý theo định dạng YOLO
+│   ├── object_frequency.csv
+│   ├── object_frequency.png
+│   ├── object_heatmap.png
+│   ├── objects_by_class_over_time.png
+│   ├── objects_over_time.png
+│   └── player_count_over_time.png
+├── data/                       # Thư mục chứa dữ liệu gốc
+├── football_yolo/              # Thư mục chứa bộ dữ liệu định dạng YOLO
 │   ├── images/
-│   │   ├── train/
-│   │   └── val/
 │   └── labels/
-│       ├── train/
-│       └── val/
-├── my_results/                 # Thư mục tùy chỉnh để lưu kết quả dự đoán
-├── runs/                       # Thư mục mặc định của YOLO để lưu kết quả huấn luyện và dự đoán
+├── my_results/                 # Thư mục lưu kết quả dự đoán tùy chỉnh
+│   └── predict_run1/
+├── runs/                       # Thư mục mặc định của YOLO lưu kết quả
 │   └── detect/
 ├── video/                      # Thư mục chứa video và hình ảnh demo
-│   ├── YOLOv8 Prediction 2025-10-23 22-22-58.mp4
-│   ├── demo.gif                # (Nên chuyển video thành GIF để hiển thị trên GitHub)
-│   └── image.png
-└── visualization_output/       # Thư mục chứa các hình ảnh được trực quan hóa
+│   ├── abc.png
+│   └── YOLOv8 Prediction 2025-10-23 22-22-58.mp4
+└── visualization_output/       # Thư mục chứa các hình ảnh trực quan hóa
+    ├── ball_speed_over_time.png
+    ├── ball_trajectory.png
+    └── ... (và nhiều file khác)
 ```
 
 ## Cài đặt
@@ -75,7 +82,7 @@ source venv/bin/activate  # Trên Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-Nội dung file `requirements.txt`:
+Nội dung file `requirements.txt` đã được tạo.
 
 ```txt
 ultralytics>=8.0.0
@@ -158,66 +165,22 @@ python datavisualvision.py
 
 ### Video Demo
 
-#### Cách 1: Link trực tiếp đến video (Tải về để xem)
-📹 [Xem video demo đầy đủ](video/YOLOv8%20Prediction%202025-10-23%2022-22-58.mp4)
+Bạn có thể tìm thấy một video dự đoán mẫu tại đường dẫn sau:
+`video/YOLOv8 Prediction 2025-10-23 22-22-58.mp4`
 
-#### Cách 2: Sử dụng GIF (Hiển thị trực tiếp - Khuyến nghị)
-Để video hiển thị trực tiếp trên GitHub, hãy chuyển đổi video sang GIF:
-
-```bash
-# Cài đặt ffmpeg nếu chưa có
-# Ubuntu/Debian: sudo apt-get install ffmpeg
-# macOS: brew install ffmpeg
-# Windows: Tải từ https://ffmpeg.org/
-
-# Chuyển đổi video sang GIF
-ffmpeg -i "video/YOLOv8 Prediction 2025-10-23 22-22-58.mp4" -vf "fps=10,scale=640:-1:flags=lanczos" -t 10 video/demo.gif
-```
-
-Sau đó thêm vào README:
-```markdown
-![Demo Video](video/demo.gif)
-```
-
-#### Cách 3: Upload lên GitHub Releases hoặc Issues
-1. Vào tab **Issues** của repository
-2. Tạo issue mới
-3. Kéo thả video vào comment box
-4. GitHub sẽ tự động upload và tạo link
-5. Copy link đó vào README
+Để hiển thị video trên GitHub, bạn có thể chuyển nó thành GIF hoặc upload lên YouTube/Vimeo.
 
 ### Hình ảnh mẫu
 
-**Cách hiển thị ảnh trên GitHub:**
-
-```markdown
-![Kết quả dự đoán](video/image.png)
-```
-
-![Kết quả dự đoán](video/image.png)
-
-**Nếu ảnh không hiển thị, kiểm tra:**
-
-1. **Đường dẫn tương đối đúng chưa?**
-   - File README.md ở root: `video/image.png` ✅
-   - Nếu ở subfolder: `../video/image.png`
-
-2. **Tên file có dấu cách hoặc ký tự đặc biệt?**
-   - Đổi tên thành: `video/result-image.png`
-   - Hoặc encode: `video/image%20(1).png`
-
-3. **Commit và push ảnh lên GitHub chưa?**
-   ```bash
-   git add video/image.png
-   git commit -m "Add demo image"
-   git push
-   ```
-
-4. **Thử đường dẫn tuyệt đối (raw GitHub URL):**
 <div align="center">
-  <img src="video/abc.png" alt="" width="600">
-  <p><em>Mô hình</em></p>
+  <img src="video/abc.png" alt="Mô hình phát hiện đối tượng" width="600">
+  <p><em>Mô hình YOLO phát hiện cầu thủ, bóng và các đối tượng khác trên sân bóng</em></p>
 </div>
+
+<div align="center">
+  <video src="video/YOLOv8 Prediction 2025-10-23 22-22-58.mp4">
+  <p><em>video demo mô hình</em></p>
+  </video>
 
 *Hình ảnh: Mô hình YOLO phát hiện cầu thủ, bóng và các đối tượng khác trên sân bóng*
 
