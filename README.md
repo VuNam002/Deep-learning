@@ -47,6 +47,9 @@ Dự án này sử dụng mô hình YOLO (You Only Look Once) để phát hiện
 ├── runs/                       # Thư mục mặc định của YOLO để lưu kết quả huấn luyện và dự đoán
 │   └── detect/
 ├── video/                      # Thư mục chứa video và hình ảnh demo
+│   ├── YOLOv8 Prediction 2025-10-23 22-22-58.mp4
+│   ├── demo.gif                # (Nên chuyển video thành GIF để hiển thị trên GitHub)
+│   └── image.png
 └── visualization_output/       # Thư mục chứa các hình ảnh được trực quan hóa
 ```
 
@@ -145,33 +148,78 @@ yolo predict model=runs/detect/train/weights/best.pt source=path/to/image.jpg
 python analyze_data.py
 ```
 
-Kết quả sẽ được lưu trong `analysis_results/`.
-
 ### 5. Trực quan hóa dữ liệu (Tùy chọn)
 
 ```bash
 python datavisualvision.py
 ```
 
-Kết quả sẽ được lưu trong `visualization_output/`.
-
 ## Demo
 
 ### Video Demo
 
-Xem video demo kết quả dự đoán của mô hình:
+#### Cách 1: Link trực tiếp đến video (Tải về để xem)
+📹 [Xem video demo đầy đủ](video/YOLOv8%20Prediction%202025-10-23%2022-22-58.mp4)
 
+#### Cách 2: Sử dụng GIF (Hiển thị trực tiếp - Khuyến nghị)
+Để video hiển thị trực tiếp trên GitHub, hãy chuyển đổi video sang GIF:
+
+```bash
+# Cài đặt ffmpeg nếu chưa có
+# Ubuntu/Debian: sudo apt-get install ffmpeg
+# macOS: brew install ffmpeg
+# Windows: Tải từ https://ffmpeg.org/
+
+# Chuyển đổi video sang GIF
+ffmpeg -i "video/YOLOv8 Prediction 2025-10-23 22-22-58.mp4" -vf "fps=10,scale=640:-1:flags=lanczos" -t 10 video/demo.gif
 ```
-video/YOLOv8 Prediction 2025-10-23 22-22-58.mp4
+
+Sau đó thêm vào README:
+```markdown
+![Demo Video](video/demo.gif)
 ```
+
+#### Cách 3: Upload lên GitHub Releases hoặc Issues
+1. Vào tab **Issues** của repository
+2. Tạo issue mới
+3. Kéo thả video vào comment box
+4. GitHub sẽ tự động upload và tạo link
+5. Copy link đó vào README
 
 ### Hình ảnh mẫu
 
-```
-video/image.png
+**Cách hiển thị ảnh trên GitHub:**
+
+```markdown
+![Kết quả dự đoán](video/image.png)
 ```
 
-*Lưu ý: Trên GitHub, video có thể không hiển thị trực tiếp. Vui lòng tải xuống để xem.*
+![Kết quả dự đoán](video/image.png)
+
+**Nếu ảnh không hiển thị, kiểm tra:**
+
+1. **Đường dẫn tương đối đúng chưa?**
+   - File README.md ở root: `video/image.png` ✅
+   - Nếu ở subfolder: `../video/image.png`
+
+2. **Tên file có dấu cách hoặc ký tự đặc biệt?**
+   - Đổi tên thành: `video/result-image.png`
+   - Hoặc encode: `video/image%20(1).png`
+
+3. **Commit và push ảnh lên GitHub chưa?**
+   ```bash
+   git add video/image.png
+   git commit -m "Add demo image"
+   git push
+   ```
+
+4. **Thử đường dẫn tuyệt đối (raw GitHub URL):**
+<div align="center">
+  <img src="video/image.png" alt="" width="600">
+  <p><em>Mô hình</em></p>
+</div>
+
+*Hình ảnh: Mô hình YOLO phát hiện cầu thủ, bóng và các đối tượng khác trên sân bóng*
 
 ## Cấu hình football.yaml
 
@@ -205,6 +253,10 @@ names:
 
 ## Lưu ý
 
+- ⚠️ **GitHub không hỗ trợ thẻ `<video>` HTML trong Markdown**. Để hiển thị video:
+  - Chuyển sang GIF (khuyến nghị)
+  - Upload video lên GitHub Issues/Releases và dùng link
+  - Hoặc upload lên YouTube/Vimeo và nhúng link
 - Đảm bảo cấu trúc thư mục đúng như mô tả trước khi chạy các script
 - File `football.yaml` cần được cấu hình với đường dẫn chính xác
 - Chất lượng mô hình phụ thuộc vào chất lượng và số lượng dữ liệu huấn luyện
@@ -227,6 +279,10 @@ python -c "import torch; print(torch.cuda.is_available())"
 ### Lỗi đường dẫn
 - Đảm bảo file `football.yaml` có đường dẫn đúng
 - Kiểm tra các thư mục `train/` và `val/` tồn tại
+
+### Video không hiển thị trên GitHub
+- GitHub Markdown không hỗ trợ thẻ `<video>` HTML
+- **Giải pháp**: Chuyển video sang GIF hoặc upload lên Issues để lấy link
 
 ## Tài liệu tham khảo
 
