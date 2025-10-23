@@ -168,8 +168,6 @@ python datavisualvision.py
 Bạn có thể tìm thấy một video dự đoán mẫu tại đường dẫn sau:
 `video/YOLOv8 Prediction 2025-10-23 22-22-58.mp4`
 
-Để hiển thị video trên GitHub, bạn có thể chuyển nó thành GIF hoặc upload lên YouTube/Vimeo.
-
 ### Hình ảnh mẫu
 
 <div align="center">
@@ -214,17 +212,7 @@ names:
 - `lr0`: Learning rate ban đầu (mặc định: 0.01)
 - `patience`: Early stopping patience (mặc định: 50)
 
-## Lưu ý
 
-- ⚠️ **GitHub không hỗ trợ thẻ `<video>` HTML trong Markdown**. Để hiển thị video:
-  - Chuyển sang GIF (khuyến nghị)
-  - Upload video lên GitHub Issues/Releases và dùng link
-  - Hoặc upload lên YouTube/Vimeo và nhúng link
-- Đảm bảo cấu trúc thư mục đúng như mô tả trước khi chạy các script
-- File `football.yaml` cần được cấu hình với đường dẫn chính xác
-- Chất lượng mô hình phụ thuộc vào chất lượng và số lượng dữ liệu huấn luyện
-- Nên có ít nhất 100-200 ảnh cho mỗi class để có kết quả tốt
-- Sử dụng GPU để tăng tốc độ huấn luyện
 
 ## Troubleshooting
 
@@ -239,13 +227,6 @@ pip install --upgrade ultralytics
 python -c "import torch; print(torch.cuda.is_available())"
 ```
 
-### Lỗi đường dẫn
-- Đảm bảo file `football.yaml` có đường dẫn đúng
-- Kiểm tra các thư mục `train/` và `val/` tồn tại
-
-### Video không hiển thị trên GitHub
-- GitHub Markdown không hỗ trợ thẻ `<video>` HTML
-- **Giải pháp**: Chuyển video sang GIF hoặc upload lên Issues để lấy link
 
 ## Tài liệu tham khảo
 
