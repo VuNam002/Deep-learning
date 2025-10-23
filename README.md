@@ -215,7 +215,7 @@ Sau đó thêm vào README:
 
 4. **Thử đường dẫn tuyệt đối (raw GitHub URL):**
 <div align="center">
-  <img src="video/image.png" alt="" width="600">
+  <img src="video/abc.png" alt="" width="600">
   <p><em>Mô hình</em></p>
 </div>
 
